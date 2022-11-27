@@ -1,0 +1,16 @@
+{
+    "name": "front-end",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "start" : "node index.js",
+      "init:sass": "node-sass sass/main.scss scssfile.css -w"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "node-sass": "^4.13.0"
+    }
+  }
