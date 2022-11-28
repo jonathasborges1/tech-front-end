@@ -1,16 +1,18 @@
 {
-    "name": "front-end",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-      "start" : "node index.js",
-      "init:sass": "node-sass sass/main.scss scssfile.css -w"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-      "node-sass": "^4.13.0"
-    }
-  }
+  "name": "front-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "init:sass": "node-sass sass/main.scss scssfile.css -w"
+  },
+  "keywords": [],
+  "author": "Jonathas Borges <jbc@icomp.ufam.edu.br>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-sass": "^4.13.0"
+  },
+  "repository": "https://github.com/jonathasborges1/tech-front-end.git"
+}
