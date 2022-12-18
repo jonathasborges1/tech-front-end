@@ -1,7 +1,5 @@
 // @ts-ignore
 import logo from './logo.svg';
-// import * as logo from 'logo.svg'
-
 import React from 'react';
 
 import './App.css';
