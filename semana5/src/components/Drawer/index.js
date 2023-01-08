@@ -79,7 +79,7 @@ function DrawerMini(props) {
   };
 
   return (
-    <Box sx={{ display: 'flex', minWidth: "90%" }}>
+    <Box sx={{ display: 'flex', minWidth: "10%" }}>
       <CssBaseline />
       
       <AppBar position="fixed" open={open}>

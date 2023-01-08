@@ -1,15 +1,10 @@
-import React,  { useEffect } from 'react';
-import InputAdornment from '@mui/material/InputAdornment';
-
+import React from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
-import CommentIcon from '@mui/icons-material/Comment';
 import Input from '@mui/material/Input';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import { withStyles } from '@mui/styles';
 import Checkbox from '@mui/material/Checkbox';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -32,27 +27,30 @@ function ListTodo(props) {
 
   const handleOnClick = (e,index) => {
     e.target.value = index;
-    console.log("meu index-> ",e); 
     return props.onClick(e);
   }
 
+  const handleOnChange = (e,index,value) => {
+    e.target.key = index;
+    e.target.defaultValue = value;
+    return props.onChange(e);
+  }
 
   return (
-    <StyledList sx={{ width: '100%', maxWidth: 1360, bgcolor: 'background.paper' }} {...props} >
-      {props.itemList.map((value,index) => {
+    <StyledList sx={{ width: '100%', maxWidth: 360 }} {...props} >
+      {props.itemlist.map((value,index) => {
         const labelId = `checkbox-list-label-${value}`;
 
         return (
-          <ListItem sx={{ minWidth: '100%'}}
+          <StyledListItem 
             key={index}
-            value={index}
-            // id={index}
+            sx={{minWidth: '20%', backgroundColor: props.hasbackground.length > 0 && props.hasbackground[index]?.status && props.hasbackground[index].index === index ? "blue" : "none" }}
             secondaryAction={
               <IconButton
                 value={index}
                 edge="end" 
                 aria-label="comments" 
-                sx={{ minWidth: '100%',color:"white"}} 
+                sx={{ minWidth: '20%',color:"white"}} 
                 onClick={ (e) => { handleOnClick(e,index) } }
                 >
                 <DeleteForeverIcon sx={{color: "red"}}  />
@@ -61,7 +59,7 @@ function ListTodo(props) {
             disablePadding
           >
 
-            <ListItemButton role={undefined} onClick={handleToggle(value)} dense sx={{ minWidth: '100%'}}>
+            <ListItemButton role={undefined} onClick={handleToggle(value)} dense sx={{ minWidth: '10%'}}>
 
               <ListItemIcon sx={{}}>
                 <Checkbox
@@ -75,18 +73,18 @@ function ListTodo(props) {
               </ListItemIcon>
 
               <StyledInput 
-                    key={value}
-                    defaultValue={value }
+                    key={index}
+                    defaultValue={value}
                     color='primary'
                     id="standard-adornment-password"
                     type="text"
-                    //onClick={props.onClick}
-                    onChange={props.onChange}
+                    onClick={props.onClick}
+                    onChange={(e) => { handleOnChange(e,index,value) } }
                 />           
-         </ListItemButton>
+            </ListItemButton>
 
 
-          </ListItem>
+          </StyledListItem>
         );
       })}
     </StyledList>
@@ -96,28 +94,41 @@ function ListTodo(props) {
 
 export default ListTodo;
 
-const StyledList = withStyles({
+const StyledListItem = withStyles({
     root: {
-      minWidth: "80%",
-      // border: "2px solid red" ,
-      // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+      minWidth: "30%",
       color: 'white !important' ,
-      // borderBottom: "2px solid blue",
       padding: '1rem',
       fontSize: "2rem !important",
-      // border: "2px solid red" ,
-      // boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+      "&.MuiListItem-root": {
+        marginBottom: "1rem",
+        // your root styles but with even higher CSS specificity
+        }
     },
     label: {
       textTransform: 'capitalize',
     },
-    formControl : {
-  
-    },
-    input : {
-  
-    },
-  })(List);
+  })(ListItem);
+
+const StyledList = withStyles({
+root: {
+    minWidth: "30%",
+    background: "none !important",
+    backgroundColor: "none !important",
+    color: 'white !important' ,
+    padding: '1rem',
+    fontSize: "2rem !important",
+},
+label: {
+    textTransform: 'capitalize',
+},
+formControl : {
+
+},
+input : {
+
+},
+})(List);
 
 const StyledInput = withStyles({
     root: {
@@ -141,40 +152,3 @@ const StyledInput = withStyles({
     },
   })(Input);
 
-
-// function List(props) {
-
-//     return (
-//         <ul >
-//             {props.itemList.map( (item, index) => {
-//                 return(
-//                 <li key={index} style={{listStyle: "none", margin: "2rem"}} > 
-//                     {/* <input type="checkbox" /> */}
-//                     <input type="text" defaultValue={item} onChange={props.onChange} id={index} style={props.style}/> 
-//                     <button value={index} onClick={props.onClick}>excluir</button> 
-//                 </li>
-//                 )
-//             })}
-//         </ul>
-//     )
-// }
-
-
-
-{/* <ListItemButton role={undefined} onClick={handleToggle(value)} dense>
-              
-<ListItemIcon></ListItemIcon>
-
-  <Checkbox
-    edge="start"
-    checked={checked.indexOf(value) !== -1}
-    tabIndex={-1}
-    disableRipple
-    inputProps={{ 'aria-labelledby': labelId }}
-  />
-
-
-  <input type="text" />
-
-<ListItemText id={labelId} sx={{fontSize: "2rem"}} primary={`${value}`} />
-</ListItemButton> */}
